@@ -59,6 +59,7 @@ export default function WorkoutsScreen() {
         contentContainerStyle={{
           padding: 16,
           gap: 12,
+          paddingBottom: 100,
           ...(process.env.EXPO_OS === 'web' && { paddingTop: 80 })
         }}
       >
@@ -72,9 +73,25 @@ export default function WorkoutsScreen() {
             <Text style={{ fontSize: 18, fontWeight: '600', color: AC.label, marginBottom: 8 }}>
               No Workouts Yet
             </Text>
-            <Text style={{ fontSize: 15, color: AC.secondaryLabel, textAlign: 'center' }}>
+            <Text style={{ fontSize: 15, color: AC.secondaryLabel, textAlign: 'center', marginBottom: 24 }}>
               Start logging your workouts to track progress and earn ranks!
             </Text>
+            <Link href="/add-workout" asChild>
+              <Pressable
+                style={({ pressed }) => ({
+                  backgroundColor: AC.systemBlue,
+                  paddingHorizontal: 32,
+                  paddingVertical: 14,
+                  borderRadius: 12,
+                  borderCurve: 'continuous',
+                  opacity: pressed ? 0.8 : 1,
+                })}
+              >
+                <Text style={{ fontSize: 17, fontWeight: '600', color: 'white' }}>
+                  Log Your First Workout
+                </Text>
+              </Pressable>
+            </Link>
           </View>
         ) : (
           workouts.map((workout) => (
@@ -125,22 +142,23 @@ export default function WorkoutsScreen() {
         <Pressable
           style={({ pressed }) => ({
             position: 'absolute',
-            bottom: 32,
-            right: 16,
+            bottom: process.env.EXPO_OS === 'ios' ? 90 : 32,
+            right: 20,
             backgroundColor: AC.systemBlue,
-            width: 60,
-            height: 60,
-            borderRadius: 30,
+            width: 64,
+            height: 64,
+            borderRadius: 32,
             alignItems: 'center',
             justifyContent: 'center',
             shadowColor: '#000',
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.3,
-            shadowRadius: 8,
-            opacity: pressed ? 0.8 : 1,
+            shadowOffset: { width: 0, height: 6 },
+            shadowOpacity: 0.4,
+            shadowRadius: 12,
+            opacity: pressed ? 0.85 : 1,
+            transform: [{ scale: pressed ? 0.95 : 1 }],
           })}
         >
-          <Text style={{ fontSize: 32, color: 'white', lineHeight: 36 }}>+</Text>
+          <Text style={{ fontSize: 36, color: 'white', lineHeight: 40, fontWeight: '300' }}>+</Text>
         </Pressable>
       </Link>
     </View>
