@@ -142,23 +142,25 @@ export default function WorkoutsScreen() {
         <Pressable
           style={({ pressed }) => ({
             position: 'absolute',
-            bottom: process.env.EXPO_OS === 'ios' ? 90 : 32,
-            right: 20,
+            bottom: process.env.EXPO_OS === 'ios' ? 100 : 80,
+            right: 24,
+            left: 24,
             backgroundColor: AC.systemBlue,
-            width: 64,
-            height: 64,
-            borderRadius: 32,
+            paddingVertical: 16,
+            borderRadius: 14,
             alignItems: 'center',
             justifyContent: 'center',
+            borderCurve: 'continuous',
             shadowColor: '#000',
-            shadowOffset: { width: 0, height: 6 },
-            shadowOpacity: 0.4,
-            shadowRadius: 12,
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.3,
+            shadowRadius: 10,
             opacity: pressed ? 0.85 : 1,
-            transform: [{ scale: pressed ? 0.95 : 1 }],
+            zIndex: 999,
+            elevation: 10,
           })}
         >
-          <Text style={{ fontSize: 36, color: 'white', lineHeight: 40, fontWeight: '300' }}>+</Text>
+          <Text style={{ fontSize: 17, color: 'white', fontWeight: '600' }}>+ Log Workout</Text>
         </Pressable>
       </Link>
     </View>
